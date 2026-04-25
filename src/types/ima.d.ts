@@ -47,18 +47,8 @@ declare global {
   }
 
   interface IMAdsLoader {
-    addEventListener(
-      type: 'adsManagerLoaded',
-      handler: (e: IMAdsManagerLoadedEvent) => void
-    ): void
-    addEventListener(
-      type: 'adError',
-      handler: (e: IMAAdErrorEvent) => void
-    ): void
-    addEventListener(
-      type: string,
-      handler: (e: IMAdsManagerLoadedEvent | IMAAdErrorEvent) => void
-    ): void
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    addEventListener(type: string, handler: (e: any) => void): void
     requestAds(request: IMAdsRequest): void
     destroy(): void
   }
@@ -80,7 +70,8 @@ declare global {
   }
 
   interface IMAdsManager {
-    addEventListener(type: string, handler: (e: IMAAdErrorEvent) => void): void
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    addEventListener(type: string, handler: (e: any) => void): void
     init(width: number, height: number, viewMode: string): void
     start(): void
     destroy(): void

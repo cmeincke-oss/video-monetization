@@ -48,6 +48,14 @@ declare global {
 
   interface IMAdsLoader {
     addEventListener(
+      type: 'adsManagerLoaded',
+      handler: (e: IMAdsManagerLoadedEvent) => void
+    ): void
+    addEventListener(
+      type: 'adError',
+      handler: (e: IMAAdErrorEvent) => void
+    ): void
+    addEventListener(
       type: string,
       handler: (e: IMAdsManagerLoadedEvent | IMAAdErrorEvent) => void
     ): void

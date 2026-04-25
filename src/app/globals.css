@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #00b87c;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar on carousel but keep scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes panel-up {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up  { animation: slide-up 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+.animate-panel-up  { animation: panel-up 0.4s cubic-bezier(0.22,1,0.36,1) forwards; }

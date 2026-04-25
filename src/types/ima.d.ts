@@ -7,73 +7,76 @@ declare global {
       ima: IMANamespace
     }
   }
-}
 
-interface IMANamespace {
-  AdDisplayContainer: new (
-    adContainer: HTMLElement,
-    videoElement?: HTMLVideoElement | null
-  ) => IMAAdDisplayContainer
+  interface IMANamespace {
+    AdDisplayContainer: new (
+      adContainer: HTMLElement,
+      videoElement?: HTMLVideoElement | null
+    ) => IMAAdDisplayContainer
 
-  AdsLoader: new (adDisplayContainer: IMAAdDisplayContainer) => IMAdsLoader
+    AdsLoader: new (adDisplayContainer: IMAAdDisplayContainer) => IMAdsLoader
 
-  AdsRequest: new () => IMAdsRequest
+    AdsRequest: new () => IMAdsRequest
 
-  ViewMode: { NORMAL: string; FULLSCREEN: string }
+    ViewMode: { NORMAL: string; FULLSCREEN: string }
 
-  AdsManagerLoadedEvent: {
-    Type: { ADS_MANAGER_LOADED: string }
-  }
+    AdsManagerLoadedEvent: {
+      Type: { ADS_MANAGER_LOADED: string }
+    }
 
-  AdErrorEvent: {
-    Type: { AD_ERROR: string }
-  }
+    AdErrorEvent: {
+      Type: { AD_ERROR: string }
+    }
 
-  AdEvent: {
-    Type: {
-      LOADED: string
-      STARTED: string
-      COMPLETE: string
-      SKIPPED: string
-      ALL_ADS_COMPLETED: string
-      CONTENT_PAUSE_REQUESTED: string
-      CONTENT_RESUME_REQUESTED: string
+    AdEvent: {
+      Type: {
+        LOADED: string
+        STARTED: string
+        COMPLETE: string
+        SKIPPED: string
+        ALL_ADS_COMPLETED: string
+        CONTENT_PAUSE_REQUESTED: string
+        CONTENT_RESUME_REQUESTED: string
+      }
     }
   }
-}
 
-interface IMAAdDisplayContainer {
-  initialize(): void
-  destroy(): void
-}
+  interface IMAAdDisplayContainer {
+    initialize(): void
+    destroy(): void
+  }
 
-interface IMAdsLoader {
-  addEventListener(type: string, handler: (e: IMAdsManagerLoadedEvent | IMAAdErrorEvent) => void): void
-  requestAds(request: IMAdsRequest): void
-  destroy(): void
-}
+  interface IMAdsLoader {
+    addEventListener(
+      type: string,
+      handler: (e: IMAdsManagerLoadedEvent | IMAAdErrorEvent) => void
+    ): void
+    requestAds(request: IMAdsRequest): void
+    destroy(): void
+  }
 
-interface IMAdsRequest {
-  adTagUrl: string
-  linearAdSlotWidth: number
-  linearAdSlotHeight: number
-  nonLinearAdSlotWidth?: number
-  nonLinearAdSlotHeight?: number
-}
+  interface IMAdsRequest {
+    adTagUrl: string
+    linearAdSlotWidth: number
+    linearAdSlotHeight: number
+    nonLinearAdSlotWidth?: number
+    nonLinearAdSlotHeight?: number
+  }
 
-interface IMAdsManagerLoadedEvent {
-  getAdsManager(videoElement: HTMLVideoElement): IMAdsManager
-}
+  interface IMAdsManagerLoadedEvent {
+    getAdsManager(videoElement: HTMLVideoElement): IMAdsManager
+  }
 
-interface IMAAdErrorEvent {
-  getError(): { getMessage(): string }
-}
+  interface IMAAdErrorEvent {
+    getError(): { getMessage(): string }
+  }
 
-interface IMAdsManager {
-  addEventListener(type: string, handler: (e: IMAAdErrorEvent) => void): void
-  init(width: number, height: number, viewMode: string): void
-  start(): void
-  destroy(): void
+  interface IMAdsManager {
+    addEventListener(type: string, handler: (e: IMAAdErrorEvent) => void): void
+    init(width: number, height: number, viewMode: string): void
+    start(): void
+    destroy(): void
+  }
 }
 
 export {}
